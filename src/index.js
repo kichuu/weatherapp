@@ -21,3 +21,10 @@ async function CurrentWeatherConditionFetch(Location) {
     console.log(WeatherDataProcessed);
 }
 
+const locationSearchBar = document.getElementById("location-search-bar");
+const locationSubmit = document.getElementById("location-submit")
+
+locationSubmit.addEventListener("click", () => {
+    let locationGiven = locationSearchBar.value; 
+    CurrentWeatherConditionFetch(locationGiven);
+})
