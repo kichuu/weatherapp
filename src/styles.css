@@ -22,37 +22,51 @@ body {
   margin: 0;
 }
 
-button , input {
-  border: calc(0.08 * var(--m)) solid transparent;
-  position: relative;
-  color: #f3f3f3;
-  font-family: "Arial";
-  font-size: var(--m);
-  border-radius: calc(0.7 * var(--m));
-  padding: calc(0.5 * var(--m)) calc(1 * var(--m));
-  display: flex;
-  justify-content: center;
-  cursor: pointer;
+button, input ,select {
+    border: calc(0.08 * var(--m)) solid transparent;
+    position: relative;
+    color: #f3f3f3;
+    font-family: "Arial";
+    font-size: var(--m);
+    border-radius: calc(0.7 * var(--m));
+    padding: calc(0.5 * var(--m)) calc(1 * var(--m));
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    
+    background: linear-gradient(#121213, #121213),
+      linear-gradient(#121213 50%, rgba(18, 18, 19, 0.6) 80%, rgba(18, 18, 19, 0)),
+      linear-gradient(
+        90deg,
+        var(--orange),
+        var(--yellow),
+        var(--green),
+        var(--blue),
+        var(--purple),
+        var(--pink),
+        var(--red)
+      );
+    background-origin: border-box;
+    background-clip: padding-box, border-box, border-box;
+    background-size: 200%;
+    animation: animate 2s infinite linear;
+  
+    background-color: rgba(18, 18, 19, 0.8);
+  }
+  
+  input ,select {
+    outline: none;
+  }
+  
+  button:hover,
+  input:hover,
+  input:hover::before,
+  button:hover::before {
+    animation: animate 0.5s infinite linear;
+  }
+  
 
-  background: linear-gradient(#121213, #121213),
-    linear-gradient(#121213 50%, rgba(18, 18, 19, 0.6) 80%, rgba(18, 18, 19, 0)),
-    linear-gradient(
-      90deg,
-      var(--orange),
-      var(--yellow),
-      var(--green),
-      var(--blue),
-      var(--purple),
-      var(--pink),
-      var(--red)
-    );
-  background-origin: border-box;
-  background-clip: padding-box, border-box, border-box;
-  background-size: 200%;
-  animation: animate 2s infinite linear;
-}
-
-button::before ,input::before {
+button::before ,input::before ,input::after {
   content: "";
   background: linear-gradient(
     90deg,
@@ -71,8 +85,11 @@ button::before ,input::before {
   z-index: -5;
   background-size: 200%;
   animation: animate 2s infinite linear;
+  background-color: rgba(18, 18, 19, 0.8); 
   filter: blur(calc(0.8 * var(--m)));
 }
+
+
 
 button:hover,
 input:hover
@@ -95,3 +112,92 @@ button:hover::before {
     --m: 2rem;
   }
 }
+
+
+input {
+    /* Existing styles */
+    border: calc(0.08 * var(--m)) solid transparent;
+    position: relative;
+    color: #f3f3f3;
+    font-family: "Arial";
+    font-size: var(--m);
+    border-radius: calc(0.7 * var(--m));
+    padding: calc(0.5 * var(--m)) calc(1 * var(--m));
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+  
+    background: linear-gradient(#121213, #121213),
+      linear-gradient(#121213 50%, rgba(18, 18, 19, 0.6) 80%, rgba(18, 18, 19, 0)),
+      linear-gradient(
+        90deg,
+        var(--orange),
+        var(--yellow),
+        var(--green),
+        var(--blue),
+        var(--purple),
+        var(--pink),
+        var(--red)
+      );
+    background-origin: border-box;
+    background-clip: padding-box, border-box, border-box;
+    background-size: 200%;
+    animation: animate 2s infinite linear;
+  
+    background-color: rgba(18, 18, 19, 0.8);
+    outline: none;
+  }
+  
+
+  .rainbow-text {
+	position: relative;
+	color: #fff; /* Changed to white for contrast */
+	background: #000; /* Background changed to black */
+	mix-blend-mode: multiply;
+	overflow: hidden;
+	text-shadow: 0 2px 4px rgba(255, 255, 255, 0.5); /* Changed to white shadow */
+	padding: 2px 4px 6px;
+	margin: -2px -4px -6px;
+}
+
+.rainbow-text::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: -100%;
+	background: black repeating-linear-gradient(90deg, #14ffe9 0%, #ffc800 16.66666%, #ff00e0 33.33333%, #14ffe9 50.0%);
+	mix-blend-mode: screen;
+	pointer-events: none;
+	animation: move 1s linear infinite;
+}
+
+@keyframes move {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(50%);
+	}
+}
+
+@supports not (mix-blend-mode: multiply) {
+	.rainbow-text {
+		-webkit-text-fill-color: transparent;
+		background-clip: text !important;
+		background: black repeating-linear-gradient(90deg, #14ffe9, #ffc800, #ff00e0, #14ffe9);
+		text-shadow: none;
+	}
+	.rainbow-text::before {
+		content: none;
+	}
+}
+
+
+
+
+.rainbow-text{
+    color: white;
+}
+
