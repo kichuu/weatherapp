@@ -1,27 +1,36 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <title>WeatherApp</title>
-    </head>
-    <body>
-        <h1 class="temperature">35°C</h1>
-        <input id="location-search-bar" type="text">
-        <button id="location-submit"></button>
-    </body>
-    
-    <script>
-        if ("serviceWorker" in navigator) {
-            window.addEventListener("load", () => {
-                navigator.serviceWorker
-                    .register("service-worker.js")
-                    .then((registration) => {
-                        console.log("Service Worker registered: ", registration);
-                    })
-                    .catch((registrationError) => {
-                        console.error("Service Worker registration failed: ", registrationError);
-                    });
-            });
-        }
-    </script>
+  <head>
+    <meta charset="utf-8" />
+    <title>WeatherApp</title>
+  </head>
+  <body>
+    <div class="main-container">
+    <div class="search-container">
+      <input id="location-search-bar" type="text" />
+      <button id="location-submit">search</button>
+    </div>
+    <div class="weather-container">
+      <h1 class="temperature">Temperature is 35°C</h1>
+    </div>
+</div>
+  </body>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker
+          .register("service-worker.js")
+          .then((registration) => {
+            console.log("Service Worker registered: ", registration);
+          })
+          .catch((registrationError) => {
+            console.error(
+              "Service Worker registration failed: ",
+              registrationError
+            );
+          });
+      });
+    }
+  </script>
 </html>
