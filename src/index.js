@@ -9,3 +9,15 @@ async function currentLocationFetch(locationGiven) {
     return currentLocationKey
 }
 
+
+async function CurrentWeatherConditionFetch(Location) {
+    let currentLocationKey = await currentLocationFetch(Location)
+    let currentWeatherData = await fetch(`http://dataservice.accuweather.com/currentconditions/v1/${currentLocationKey}?apikey=Q0abp83L6OAZwOcUZGLA2EPh90T4QhjG`)
+    let WeatherDataProcessed = await currentWeatherData.json()
+    let tempOfLocationInCelsius = WeatherDataProcessed[0].Temperature.Metric.Value
+    let tempOfLocationInFarenheit = WeatherDataProcessed[0].Temperature.Imperial.Value
+    let weatherIcon = WeatherDataProcessed[0].WeatherIcon
+    let weatherText = WeatherDataProcessed[0].WeatherText
+    console.log(WeatherDataProcessed);
+}
+
